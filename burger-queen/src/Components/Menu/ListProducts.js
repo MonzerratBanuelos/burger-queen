@@ -1,4 +1,4 @@
-import '../styles/ListProducts.css'
+import '../../styles/ListProducts.css'
 import { useState, useEffect } from 'react'
 import { Product } from './Product'
 

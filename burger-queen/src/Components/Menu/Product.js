@@ -1,4 +1,4 @@
-import '../styles/Product.css'
+import '../../styles/Product.css'
 export const Product = ({ product }) => {
   return (
     <div className='tarjeta_producto' key={product.id}>

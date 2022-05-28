@@ -3,7 +3,7 @@ import { onSnapshot, collection, query, where } from 'firebase/firestore'
 import { db } from '../../../Lib/firebase-keys'
 import { deleteStaff } from '../../../Lib/Providers'
 
-export const Meseros = () => {
+export const Meseros = ({ getUser }) => {
   const [staff, setStaff] = useState([])
 
   const getMesero = async () => {
@@ -29,7 +29,7 @@ export const Meseros = () => {
         <section className='tarjeta_de_empleados' key={mese.uid}>
           <button id={mese.uid} className='btn_empleado'onClick={() => deleteStaff(mese.id).then(console.log('lo quite amix'))}>-</button>
           <p>{mese.name}</p>
-          <button id={mese.uid} className='btn_empleado'>+</button>
+          <button id={mese.uid} className='btn_empleado'onClick={() => { getUser(mese.id) }} >+</button>
         </section>
       )
     })}
