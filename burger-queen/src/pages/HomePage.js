@@ -10,6 +10,7 @@ import { Staff } from '../Components/Administrador/Employees/Staff'
 import { useState, useEffect } from 'react'
 import { ProductsControl } from '../Components/Waiters/ProductsControl'
 import { ReadyProducts } from '../Components/Chefs/ReadyProducts'
+import { Recipes } from '../Components/Chefs/Recipes'
 import Products from '../Components/Administrador/Products/Products'
 
 // eslint-disable-next-line react/prop-types
@@ -70,6 +71,9 @@ export default function HomePage({ handleExit, currentUser, rol }) {
     if (handleMain === 'Comandas') {
       return <ActiveCommands mesas={mesas} setMesas={setMesas} />
     }
+    if (handleMain === 'Recetas') {
+      return <ListProducts singleProduct={singleProduct} setSingleProduct={setSingleProduct} rol={rol} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
+    }
   }
 
   // hace renderizado condicional en Aside
@@ -88,6 +92,9 @@ export default function HomePage({ handleExit, currentUser, rol }) {
     }
     if (handleMain === 'Productos') {
       return <Products singleProduct={singleProduct} newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
+    }
+    if (handleMain === 'ProductRecipe') {
+      return <Recipes singleProduct={singleProduct} newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
     }
   }
   const [order, setOrder] = useState({

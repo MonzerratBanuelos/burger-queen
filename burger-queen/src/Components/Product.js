@@ -9,7 +9,7 @@ export const Product = ({ setSingleProduct, rol, product, setOrder, order, setAs
       handleAddProduct(product)
     }
     if (rol === 'cocinero') {
-      setAside('Productos')
+      setAside('ProductRecipe')
     }
   }
   const handleAddProduct = (currentProduct) => {
