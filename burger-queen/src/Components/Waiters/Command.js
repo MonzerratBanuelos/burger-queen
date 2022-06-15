@@ -6,7 +6,7 @@ import iconAdd from '../../Assets/icons/add.png'
 import iconLess from '../../Assets/icons/less.png'
 import { useEffect } from 'react'
 
-export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editingTable, setEditingTable, onOff, setOnOff, DateHour, currentUser }) => {
+export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editingTable, setEditingTable, onOff, setOnOff, DateHour, currentUser, getDates, timer }) => {
   // const [currentTable, setCurrentTable] = useState(editingTable)
   // console.log(editingTable)
   const dataInfo = order
@@ -97,15 +97,15 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
         orderId: 1,
         table: '',
         clientName: '',
-        productos: [],
         totalProducts: '',
         totalPrice: '',
         TableStatus: 'kitchen',
         waiter: currentUser.displayName,
         waiterId: currentUser.uid,
+        date: getDates,
         startTime: DateHour,
-        endtTime: '',
-        totalTime: ''
+        totalTime: '',
+        productos: []
       }))
   }
 
@@ -225,15 +225,15 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
               orderId: 1,
               table: '',
               clientName: '',
-              productos: [],
               totalProducts: '',
               totalPrice: '',
               TableStatus: 'kitchen',
               waiter: currentUser.displayName,
               waiterId: currentUser.uid,
+              date: getDates,
               startTime: DateHour,
-              endtTime: '',
-              totalTime: ''
+              totalTime: timer,
+              productos: []
             })
             setMain('Mesas')
           }}>

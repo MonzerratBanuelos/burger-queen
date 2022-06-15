@@ -15,6 +15,7 @@ import { Recipes } from '../Components/Chefs/Recipes'
 import FormProducts from '../Components/Administrador/Products/FormProducts'
 import { deleteStaff } from '../Lib/Providers'
 import { Descriptions } from '../Components/Waiters/Descriptions'
+import { GetTimer } from '../Components/Timer'
 
 // eslint-disable-next-line react/prop-types
 export default function HomePage({ handleExit, currentUser, rol }) {
@@ -36,7 +37,9 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   const [onOff, setOnOff] = useState(false)
   // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
   const [editingTable, setEditingTable] = useState(null)
-  console.log(editingTable)
+  // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
+  const [timer, setTimer] = useState(0)
+
   const getMesas = async () => {
     const url = 'http://localhost:4000/orders'
     const getFetchData = await fetch(url).then((resul) => resul.json())
@@ -85,7 +88,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <Menu onOff={onOff} rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
     }
     if (handleMain === 'Comandas') {
-      return <ActiveCommands mesas={mesas} setMesas={setMesas} />
+      return <ActiveCommands mesas={mesas} GetTimer={GetTimer} setTimer={setTimer}/>
     }
     if (handleMain === 'Recetas') {
       return <Menu rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
@@ -95,7 +98,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   // hace renderizado condicional en Aside
   const handleAsideRender = (handleMain) => {
     if (handleMain === 'Comanda') {
-      return <Command editingTable={editingTable} onOff={onOff} setOnOff={setOnOff} setEditingTable={setEditingTable} totalOrders={totalOrders} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} DateHour={DateHour} currentUser={currentUser} />
+      return <Command editingTable={editingTable} onOff={onOff} setOnOff={setOnOff} setEditingTable={setEditingTable} totalOrders={totalOrders} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} DateHour={DateHour} currentUser={currentUser} getDates={getDates} timer={timer}/>
     }
     if (handleMain === 'CreateUsers') {
       return <CreateUsers editStaff={editStaff} setEditStaff={setEditStaff} deleteStaff={deleteStaff} setAside={setHandleAside} />
@@ -121,15 +124,15 @@ export default function HomePage({ handleExit, currentUser, rol }) {
     orderId: 1,
     table: '',
     clientName: '',
-    productos: [],
     totalProducts: '',
     totalPrice: '',
     TableStatus: 'kitchen',
     waiter: currentUser.displayName,
     waiterId: currentUser.uid,
+    date: getDates,
     startTime: DateHour,
-    endtTime: '',
-    totalTime: ''
+    totalTime: '',
+    productos: []
   })
 
   return (

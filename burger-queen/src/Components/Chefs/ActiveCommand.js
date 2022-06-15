@@ -1,19 +1,18 @@
 import { useState } from 'react'
-export const ActiveCommand = ({ mesa }) => {
+export const ActiveCommand = ({ mesa, GetTimer }) => {
   const [productNewStatus, SetProductNewStatus] = useState({
-    id: mesa.id,
     orderId: mesa.orderId,
     table: mesa.table,
     clientName: mesa.clientName,
-    productos: mesa.productos,
     totalProducts: mesa.totalProducts,
     totalPrice: mesa.totalPrice,
     TableStatus: mesa.TableStatus,
-    waiter: mesa.displayName,
-    waiterId: mesa.uid,
+    waiter: mesa.waiter,
+    waiterId: mesa.waiterId,
+    date: mesa.date,
     startTime: mesa.startTime,
-    endtTime: mesa.endtTime,
-    totalTime: mesa.totalTime
+    totalTime: mesa.totalTime,
+    productos: []
   })
   const updateStatus = (currentProducto, mesa) => {
     const id = mesa.productos.findIndex((producto) => {
@@ -61,7 +60,7 @@ export const ActiveCommand = ({ mesa }) => {
               <br />
               {mesa.table}{' '}
             </th>
-            <th id='time_title'>{mesa.startTime}</th>
+            <GetTimer/>
           </tr>
         </thead>
         {mesa && mesa.productos.map((product) =>

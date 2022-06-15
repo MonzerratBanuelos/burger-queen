@@ -32,3 +32,7 @@
 tr:nth-child(odd) {
     background-color: #F6F6F6;
 }
+
+.timer{
+    color: #232021;
+}
