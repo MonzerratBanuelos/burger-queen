@@ -33,7 +33,7 @@ export const OrdersReady = ({ rol, mesa, setMesas, table, products }) => {
     SetProductDelivery({ ...productDelivery, productos: [...updatedMesa] })
     fetchProductos({ ...productDelivery, productos: [...updatedMesa] })
   }
-  const fetchProductos = async (productStats) => {
+  const fetchProductos = async (productDelivery) => {
     await fetch(`http://localhost:4000/orders/${mesa.id}`, {
       method: 'PATCH',
       headers: { 'Content-type': 'application/json' },
@@ -58,7 +58,7 @@ export const OrdersReady = ({ rol, mesa, setMesas, table, products }) => {
                     src={graybell}
                     alt='bell'
                     className='icon_bell'
-                    onClick={ () => { handleStats(product) }}
+                    onClick={() => { handleStats(product) }}
                   />)
                   : (
                     <div className='product_time'> 0:15 </div>

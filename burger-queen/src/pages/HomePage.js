@@ -1,3 +1,4 @@
+/* eslint-disable brace-style */
 import '../styles/HomePage.css'
 import LogoBQB from '../Assets/Images/BQBlack.png'
 import LogOut from '../Assets/icons/logOut.png'
@@ -19,13 +20,23 @@ import { Descriptions } from '../Components/Waiters/Descriptions'
 export default function HomePage({ handleExit, currentUser, rol }) {
   const getDates = new Date()
   const DateHour = getDates.getHours() + ':' + getDates.getMinutes()
+  // setea el renderizado condicional del main
   const [handleMain, setHandleMain] = useState('')
+  // setea el renderizado condicional del aside
   const [handleAside, setHandleAside] = useState('')
+  // Guarda todas las mesas obtenidas del fetch
   const [mesas, setMesas] = useState([])
+  // Guarda todas las comandas obtenidas del fetch
   const [totalOrders, setTotalOrders] = useState([])
+  // Se utiliza para guardar la información del staff a editar
   const [editStaff, setEditStaff] = useState(null)
+  // ????
   const [newProduct, setNewProduct] = useState(null)
+  // Se utiliza para condicionar el estado en el rol de mesero y mostrar recetas o agregar productos segun corresponda
   const [onOff, setOnOff] = useState(false)
+  // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
+  const [editingTable, setEditingTable] = useState(null)
+  console.log(editingTable)
   const getMesas = async () => {
     const url = 'http://localhost:4000/orders'
     const getFetchData = await fetch(url).then((resul) => resul.json())
@@ -68,7 +79,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <Staff editStaff={editStaff} setEditStaff={setEditStaff} setAside={setHandleAside} />
     }
     if (handleMain === 'Mesas') {
-      return <TablesOrders onOff={onOff} setOnOff={setOnOff} setMain={setHandleMain} setAside={setHandleAside} mesas={mesas} setMesas={setMesas} />
+      return <TablesOrders onOff={onOff} setOnOff={setOnOff} setMain={setHandleMain} setAside={setHandleAside} mesas={mesas} setMesas={setMesas} editingTable={editingTable} setEditingTable={setEditingTable} order={order} setOrder={setOrder} />
     }
     if (handleMain === 'Menu') {
       return <Menu onOff={onOff} rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
@@ -84,7 +95,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   // hace renderizado condicional en Aside
   const handleAsideRender = (handleMain) => {
     if (handleMain === 'Comanda') {
-      return <Command totalOrders={totalOrders} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} />
+      return <Command editingTable={editingTable} onOff={onOff} setOnOff={setOnOff} setEditingTable={setEditingTable} totalOrders={totalOrders} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} DateHour={DateHour} currentUser={currentUser} />
     }
     if (handleMain === 'CreateUsers') {
       return <CreateUsers editStaff={editStaff} setEditStaff={setEditStaff} deleteStaff={deleteStaff} setAside={setHandleAside} />
@@ -105,6 +116,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <Descriptions newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
     }
   }
+  // Este estado se ulitiza para llenar los datos y mandarlos a la db
   const [order, setOrder] = useState({
     orderId: 1,
     table: '',
@@ -141,13 +153,51 @@ export default function HomePage({ handleExit, currentUser, rol }) {
 
         {rol === 'mesero' && (
           <p className={`${handleMain === 'Mesas' ? 'activeB' : 'inactiveB'}`}
-            onClick={() => { setHandleMain('Mesas') }} >
+            onClick={() =>
+            // eslint-disable-next-line brace-style
+            {
+              setHandleMain('Mesas'); setHandleAside('ProductsControl'); setOrder(
+                {
+                  orderId: 1,
+                  table: '',
+                  clientName: '',
+                  productos: [],
+                  totalProducts: '',
+                  totalPrice: '',
+                  TableStatus: 'kitchen',
+                  waiter: currentUser.displayName,
+                  waiterId: currentUser.uid,
+                  startTime: DateHour,
+                  endtTime: '',
+                  totalTime: ''
+                }
+              )
+            }
+            } >
             Mesas
           </p>
         )}
         {rol === 'mesero' && (
           <p className={`${handleMain === 'Menu' ? 'activeB' : 'inactiveB'}`}
-            onClick={() => { setHandleMain('Menu'); setOnOff(false) }}>
+            onClick={() => {
+              setHandleMain('Menu'); setOnOff(false); setHandleAside('ProductsControl'); setOrder(
+                {
+                  orderId: 1,
+                  table: '',
+                  clientName: '',
+                  productos: [],
+                  totalProducts: '',
+                  totalPrice: '',
+                  TableStatus: 'kitchen',
+                  waiter: currentUser.displayName,
+                  waiterId: currentUser.uid,
+                  startTime: DateHour,
+                  endtTime: '',
+                  totalTime: ''
+                }
+              )
+            }
+            }>
             Menu
           </p>
         )}

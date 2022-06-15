@@ -1,7 +1,7 @@
 import '../../styles/TableOrder.css'
-export const TableOrder = ({ mesa }) => {
+export const TableOrder = ({ mesa, setOrder, setAside, setMain, editingTable, setEditingTable, setOnOff }) => {
   return (
-    <div className='container_table' key={mesa.id}>
+    <div className='container_table' key={mesa.id} onClick={() => { setMain('Menu'); setAside('Comanda'); setOrder(mesa); setOnOff(true); console.log(editingTable); setEditingTable('editando') }}>
       <table className='data_table'>
         <thead>
           <tr><th id='title_table'>Mesa{mesa.table} </th><th id='time_title'>{mesa.startTime}</th>
