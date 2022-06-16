@@ -60,7 +60,7 @@ export const ActiveCommand = ({ mesa, GetTimer }) => {
               <br />
               {mesa.table}{' '}
             </th>
-            <GetTimer/>
+            <GetTimer mesa={mesa}/>
           </tr>
         </thead>
         {mesa && mesa.productos.map((product) =>

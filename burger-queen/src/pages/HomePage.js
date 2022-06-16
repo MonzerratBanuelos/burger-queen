@@ -20,7 +20,7 @@ import { GetTimer } from '../Components/Timer'
 // eslint-disable-next-line react/prop-types
 export default function HomePage({ handleExit, currentUser, rol }) {
   const getDates = new Date()
-  const DateHour = getDates.getHours() + ':' + getDates.getMinutes()
+  const DateHour = getDates.getHours() + ':' + getDates.getMinutes() + ':' + getDates.getSeconds()
   // setea el renderizado condicional del main
   const [handleMain, setHandleMain] = useState('')
   // setea el renderizado condicional del aside
@@ -38,7 +38,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
   const [editingTable, setEditingTable] = useState(null)
   // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
-  const [timer, setTimer] = useState(0)
+  const [timer, setTimer] = useState(DateHour)
 
   const getMesas = async () => {
     const url = 'http://localhost:4000/orders'
@@ -55,8 +55,14 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   useEffect(() => {
     setFristRender()
     getMesas()
-  }, [DateHour])
+  }, [])
 
+  useEffect(() => {
+    setInterval(() => {
+      const date = new Date()
+      setTimer(date.toLocaleTimeString())
+    }, 1000)
+  }, [])
   // useEffect(() => {
   // }, [])
 

@@ -9,7 +9,7 @@ export default function FormProducts({ newProduct, setMain, setAside }) {
     setCurrentProduct({ ...currentProduct, currentProduct })
     fetchProductos({ ...currentProduct, currentProduct })
   }
-  const fetchProductos = async (productStats) => {
+  const fetchProductos = async () => {
     await fetch(`http://localhost:4000/products/${currentProduct.id}`, {
       method: 'PATCH',
       headers: { 'Content-type': 'application/json' },
