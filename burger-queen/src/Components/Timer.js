@@ -3,6 +3,7 @@ export const GetTimer = ({ mesa }) => {
   const hoursMinSecs = { hours: 1, minutes: 20, seconds: 55 }
   const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs
   const [[hour, minute, second], setTime] = useState([hours, minutes, seconds])
+  // esto es una prueba
 
   const tick = () => {
     setTime([hour, minute, second + 1])
