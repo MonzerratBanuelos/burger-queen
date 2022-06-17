@@ -2,7 +2,8 @@
 import graybell from '../../Assets/icons/whiteBell.png'
 import { useState } from 'react'
 
-export const OrdersReady = ({ rol, mesa, setMesas, table, products }) => {
+export const OrdersReady = ({ rol, mesa, setMesas, table, products, timer2 }) => {
+  console.log(timer2)
   const [productDelivery, SetProductDelivery] = useState({
     id: mesa.id,
     orderId: mesa.orderId,
@@ -30,7 +31,7 @@ export const OrdersReady = ({ rol, mesa, setMesas, table, products }) => {
         updatedMesa[id][property] = 'delivery'
       }
     }
-    SetProductDelivery({ ...productDelivery, productos: [...updatedMesa] })
+    SetProductDelivery({ ...productDelivery, productos: [...updatedMesa], endtTime: timer2 })
     fetchProductos({ ...productDelivery, productos: [...updatedMesa] })
   }
   const fetchProductos = async (productDelivery) => {

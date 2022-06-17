@@ -1,7 +1,7 @@
 import { OrdersReady } from '../Waiters/OrdersReady'
 import '../../styles/ProductsControl.css'
 
-export const StatusProduct = ({ rol, mesas, setMesas }) => {
+export const StatusProduct = ({ rol, mesas, setMesas, timer2 }) => {
   return (
     <>
       <div className='tabless_container'>
@@ -14,6 +14,7 @@ export const StatusProduct = ({ rol, mesas, setMesas }) => {
               table={mesa.table}
               products={mesa.productos}
               key={mesa.id}
+              timer2={timer2}
             />
           ))}
       </div>

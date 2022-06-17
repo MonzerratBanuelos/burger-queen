@@ -1,5 +1,5 @@
 import { useState } from 'react'
-export const ActiveCommand = ({ mesa, GetTimer }) => {
+export const ActiveCommand = ({ mesa, GetTimer, setTimer2 }) => {
   const [productNewStatus, SetProductNewStatus] = useState({
     orderId: mesa.orderId,
     table: mesa.table,
@@ -60,7 +60,7 @@ export const ActiveCommand = ({ mesa, GetTimer }) => {
               <br />
               {mesa.table}{' '}
             </th>
-            <GetTimer mesa={mesa}/>
+            <GetTimer mesa={mesa} setTimer2={setTimer2} />
           </tr>
         </thead>
         {mesa && mesa.productos.map((product) =>

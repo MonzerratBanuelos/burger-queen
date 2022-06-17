@@ -39,7 +39,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   const [editingTable, setEditingTable] = useState(null)
   // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
   const [timer, setTimer] = useState(DateHour)
-
+  const [timer2, setTimer2] = useState('0')
   const getMesas = async () => {
     const url = 'http://localhost:4000/orders'
     const getFetchData = await fetch(url).then((resul) => resul.json())
@@ -94,7 +94,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <Menu onOff={onOff} rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
     }
     if (handleMain === 'Comandas') {
-      return <ActiveCommands mesas={mesas} GetTimer={GetTimer} setTimer={setTimer}/>
+      return <ActiveCommands mesas={mesas} GetTimer={GetTimer} setTimer2={setTimer2} />
     }
     if (handleMain === 'Recetas') {
       return <Menu rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
@@ -110,10 +110,10 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <CreateUsers editStaff={editStaff} setEditStaff={setEditStaff} deleteStaff={deleteStaff} setAside={setHandleAside} />
     }
     if (handleMain === 'ProductsControl') {
-      return <ProductsControl rol={rol} mesas={mesas} setMesas={setMesas} />
+      return <ProductsControl rol={rol} mesas={mesas} setMesas={setMesas} timer2={timer2} setTimer2={setTimer2}/>
     }
     if (handleMain === 'ProductsListos') {
-      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas} />
+      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas}/>
     }
     if (handleMain === 'FormProducts') {
       return <FormProducts newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
