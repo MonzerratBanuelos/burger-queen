@@ -1,5 +1,5 @@
 import { useState } from 'react'
-export const ActiveCommand = ({ mesa, GetTimer, setTimer2 }) => {
+export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
   const [productNewStatus, SetProductNewStatus] = useState({
     orderId: mesa.orderId,
     table: mesa.table,
@@ -33,7 +33,7 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2 }) => {
     const nowIsReady = isReady.every(testStatus)
     if (nowIsReady === true) {
       productNewStatus.TableStatus = 'ready'
-      SetProductNewStatus({ ...productNewStatus, TableStatus: 'ready' })
+      SetProductNewStatus({ ...productNewStatus, TableStatus: 'ready', totalTime: GetTimer })
     }
     fetchProductos({ ...productNewStatus, productos: [...updatedMesa], TableStatus: 'ready' })
   }
@@ -60,7 +60,7 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2 }) => {
               <br />
               {mesa.table}{' '}
             </th>
-            <GetTimer mesa={mesa} setTimer2={setTimer2} />
+            <GetTimer mesa={mesa} setTimer2={setTimer2} timer2={timer2} />
           </tr>
         </thead>
         {mesa && mesa.productos.map((product) =>

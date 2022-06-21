@@ -1,7 +1,7 @@
 import '../../styles/TablesOrders.css'
 import Add from '../../Assets/icons/yelowAdd.png'
 import { TableOrder } from './TableOrder'
-export const TablesOrders = ({ onOff, setOnOff, setMain, setAside, mesas, setMesas, editingTable, setEditingTable, setOrder }) => {
+export const TablesOrders = ({ GetTimer, onOff, setOnOff, setMain, setAside, mesas, setMesas, editingTable, setEditingTable, setOrder }) => {
   const handleOrder = () => {
     setMain('Menu')
     setAside('Comanda')
@@ -9,7 +9,7 @@ export const TablesOrders = ({ onOff, setOnOff, setMain, setAside, mesas, setMes
   return (
     <div className='tables_container'>{
       mesas && mesas.map((mesa) => (
-        <TableOrder mesa={mesa} key={mesa.id} setAside={setAside} editingTable={editingTable} setEditingTable={setEditingTable} setMain={setMain} setOrder={setOrder} setOnOff={setOnOff} />
+        <TableOrder GetTimer={GetTimer} mesa={mesa} key={mesa.id} setAside={setAside} editingTable={editingTable} setEditingTable={setEditingTable} setMain={setMain} setOrder={setOrder} setOnOff={setOnOff} />
       ))}
       <img
         src={Add}

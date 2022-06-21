@@ -20,7 +20,7 @@ import { GetTimer } from '../Components/Timer'
 // eslint-disable-next-line react/prop-types
 export default function HomePage({ handleExit, currentUser, rol }) {
   const getDates = new Date()
-  const DateHour = getDates.getHours() + ':' + getDates.getMinutes() + ':' + getDates.getSeconds()
+  const DateHour = getDates.getHours() + ':' + getDates.getMinutes().toString().padStart(2, '0') + ':' + getDates.getSeconds()
   // setea el renderizado condicional del main
   const [handleMain, setHandleMain] = useState('')
   // setea el renderizado condicional del aside
@@ -39,7 +39,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   const [editingTable, setEditingTable] = useState(null)
   // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
   const [timer, setTimer] = useState(DateHour)
-  const [timer2, setTimer2] = useState('0')
+  const [timer2, setTimer2] = useState([])
   const getMesas = async () => {
     const url = 'http://localhost:4000/orders'
     const getFetchData = await fetch(url).then((resul) => resul.json())
@@ -54,7 +54,6 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   // observa el cambio en la funcion getMesas
   useEffect(() => {
     setFristRender()
-    getMesas()
   }, [])
 
   useEffect(() => {
@@ -63,9 +62,6 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       setTimer(date.toLocaleTimeString())
     }, 1000)
   }, [])
-  // useEffect(() => {
-  // }, [])
-
   // da valor al handle de renderizado segun el rol
   const setFristRender = () => {
     if (rol === 'admin') {
@@ -81,20 +77,20 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       setHandleAside('ProductsListos')
     }
   }
-
+  console.log(timer2)
   // hace renderizado condicional en main
   const handleMainRender = (handleMain) => {
     if (handleMain === 'Empleados') {
       return <Staff editStaff={editStaff} setEditStaff={setEditStaff} setAside={setHandleAside} />
     }
     if (handleMain === 'Mesas') {
-      return <TablesOrders onOff={onOff} setOnOff={setOnOff} setMain={setHandleMain} setAside={setHandleAside} mesas={mesas} setMesas={setMesas} editingTable={editingTable} setEditingTable={setEditingTable} order={order} setOrder={setOrder} />
+      return <TablesOrders GetTimer={GetTimer} timer2={timer2} onOff={onOff} setOnOff={setOnOff} setMain={setHandleMain} setAside={setHandleAside} mesas={mesas} setMesas={setMesas} editingTable={editingTable} setEditingTable={setEditingTable} order={order} setOrder={setOrder} />
     }
     if (handleMain === 'Menu') {
       return <Menu onOff={onOff} rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
     }
     if (handleMain === 'Comandas') {
-      return <ActiveCommands mesas={mesas} GetTimer={GetTimer} setTimer2={setTimer2} />
+      return <ActiveCommands mesas={mesas} GetTimer={GetTimer} setTimer2={setTimer2} timer2={timer2} />
     }
     if (handleMain === 'Recetas') {
       return <Menu rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
@@ -113,7 +109,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <ProductsControl rol={rol} mesas={mesas} setMesas={setMesas} timer2={timer2} setTimer2={setTimer2}/>
     }
     if (handleMain === 'ProductsListos') {
-      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas}/>
+      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas} GetTimer={GetTimer}/>
     }
     if (handleMain === 'FormProducts') {
       return <FormProducts newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
@@ -140,7 +136,9 @@ export default function HomePage({ handleExit, currentUser, rol }) {
     totalTime: '',
     productos: []
   })
-
+  useEffect(() => {
+    getMesas()
+  }, [order])
   return (
     <div className='home_container'>
       <header className='header_home'>

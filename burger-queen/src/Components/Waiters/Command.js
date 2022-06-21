@@ -145,7 +145,7 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
     }
     setOrder({ ...order, productos: [...updatedOrder] })
   }
-  console.log(editingTable)
+  // console.log(editingTable)
   return (<>
     {editingTable === 'editando'
       ? <div className='container_of_command'>

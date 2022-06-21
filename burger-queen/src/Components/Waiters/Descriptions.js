@@ -1,4 +1,4 @@
-export const Descriptions = ({ newProduct }) => {
+export const Descriptions = ({ newProduct, setMain, setAside }) => {
   return (
     <section className='section_recipes'>
       <img className='img_recipe' src={newProduct.urlImg}></img>
@@ -7,7 +7,7 @@ export const Descriptions = ({ newProduct }) => {
       <p className='melPrep_recipe'>Tiempo de preparación: {newProduct.melPrep}</p>
       <p className='category_recipe'>Preparado unicamiente durante: {newProduct.category}</p>
       <p className='price_recipe'> ${newProduct.price}</p>
-      <button className="btn_close">Cerrar</button>
+      <button className="btn_close" onClick={() => { setAside(null) } }>Cerrar</button>
     </section>
   )
 }

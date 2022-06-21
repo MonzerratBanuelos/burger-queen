@@ -1,9 +1,9 @@
 /* eslint-disable indent */
 import graybell from '../../Assets/icons/whiteBell.png'
 import { useState } from 'react'
+// import { GetTimer } from '../Timer'
 
-export const OrdersReady = ({ rol, mesa, setMesas, table, products, timer2 }) => {
-  console.log(timer2)
+export const OrdersReady = ({ rol, mesa, setMesas, table, products, timer2, GetTimer }) => {
   const [productDelivery, SetProductDelivery] = useState({
     id: mesa.id,
     orderId: mesa.orderId,
