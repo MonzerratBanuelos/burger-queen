@@ -23,22 +23,27 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
     for (const property in updatedMesa[id]) {
       if (property === 'productStatus') {
         updatedMesa[id][property] = 'ready'
-      } if (property === 'productTime') {
+      }
+      if (property === 'productTime') {
         updatedMesa[id][property] = cronometro
       }
-      SetProductNewStatus({ ...productNewStatus, productos: [...updatedMesa] })
     }
     const isReady = []
     for (let i = 0; i < updatedMesa.length; i++) {
       isReady.push(updatedMesa[i].productStatus)
     }
-    const testStatus = (elemento) => elemento === 'ready' || elemento === 'delivery'
+    const testStatus = (elemento) =>
+      elemento === 'ready' || elemento === 'delivery'
     const nowIsReady = isReady.every(testStatus)
+    console.log(nowIsReady)
     if (nowIsReady === true) {
       productNewStatus.TableStatus = 'ready'
-      SetProductNewStatus({ ...productNewStatus, TableStatus: 'ready', totalTime: cronometro })
+      productNewStatus.totalTime = cronometro
+      SetProductNewStatus({ ...productNewStatus, productos: [...updatedMesa], TableStatus: 'ready', totalTime: cronometro })
+    } else {
+      SetProductNewStatus({ ...productNewStatus, productos: [...updatedMesa] })
     }
-    fetchProductos({ ...productNewStatus, productos: [...updatedMesa], TableStatus: 'ready', totalTime: cronometro })
+    fetchProductos({ ...productNewStatus, productNewStatus })
   }
 
   const fetchProductos = async (productStats) => {
@@ -46,7 +51,9 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
       method: 'PATCH',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(productNewStatus)
-    }).then(response => response.json()).then(console.log('actualizado'))
+    })
+      .then((response) => response.json())
+      .then(console.log('actualizado'))
     console.log(mesa)
   }
 
@@ -66,9 +73,10 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
             <div>{cronometro}</div>
           </tr>
         </thead>
-        {mesa && mesa.productos.map((product) =>
-          product.productStatus === 'kitchen'
-            ? <tbody key={product.name}>
+        {mesa &&
+          mesa.productos.map((product) =>
+            product.productStatus === 'kitchen'
+              ? <tbody key={product.name}>
                 <tr>
                   <td>{product.cantidad}</td>
                   <td>
@@ -83,8 +91,8 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
                   </td>
                 </tr>
               </tbody>
-            : undefined
-        )}
+              : undefined
+          )}
       </table>
     </div>
   )
