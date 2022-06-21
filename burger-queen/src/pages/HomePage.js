@@ -15,7 +15,7 @@ import { Recipes } from '../Components/Chefs/Recipes'
 import FormProducts from '../Components/Administrador/Products/FormProducts'
 import { deleteStaff } from '../Lib/Providers'
 import { Descriptions } from '../Components/Waiters/Descriptions'
-import { GetTimer } from '../Components/Timer'
+import { getTimer } from '../Components/Timer'
 
 // eslint-disable-next-line react/prop-types
 export default function HomePage({ handleExit, currentUser, rol }) {
@@ -77,20 +77,20 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       setHandleAside('ProductsListos')
     }
   }
-  console.log(timer2)
+  // console.log(timer2)
   // hace renderizado condicional en main
   const handleMainRender = (handleMain) => {
     if (handleMain === 'Empleados') {
       return <Staff editStaff={editStaff} setEditStaff={setEditStaff} setAside={setHandleAside} />
     }
     if (handleMain === 'Mesas') {
-      return <TablesOrders GetTimer={GetTimer} timer2={timer2} onOff={onOff} setOnOff={setOnOff} setMain={setHandleMain} setAside={setHandleAside} mesas={mesas} setMesas={setMesas} editingTable={editingTable} setEditingTable={setEditingTable} order={order} setOrder={setOrder} />
+      return <TablesOrders GetTimer={getTimer} timer2={timer2} onOff={onOff} setOnOff={setOnOff} setMain={setHandleMain} setAside={setHandleAside} mesas={mesas} setMesas={setMesas} editingTable={editingTable} setEditingTable={setEditingTable} order={order} setOrder={setOrder} />
     }
     if (handleMain === 'Menu') {
       return <Menu onOff={onOff} rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
     }
     if (handleMain === 'Comandas') {
-      return <ActiveCommands mesas={mesas} GetTimer={GetTimer} setTimer2={setTimer2} timer2={timer2} />
+      return <ActiveCommands mesas={mesas} GetTimer={getTimer} setTimer2={setTimer2} timer2={timer2} />
     }
     if (handleMain === 'Recetas') {
       return <Menu rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
@@ -109,7 +109,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <ProductsControl rol={rol} mesas={mesas} setMesas={setMesas} timer2={timer2} setTimer2={setTimer2}/>
     }
     if (handleMain === 'ProductsListos') {
-      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas} GetTimer={GetTimer}/>
+      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas} GetTimer={getTimer}/>
     }
     if (handleMain === 'FormProducts') {
       return <FormProducts newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
@@ -168,15 +168,15 @@ export default function HomePage({ handleExit, currentUser, rol }) {
                   orderId: 1,
                   table: '',
                   clientName: '',
-                  productos: [],
                   totalProducts: '',
                   totalPrice: '',
                   TableStatus: 'kitchen',
                   waiter: currentUser.displayName,
                   waiterId: currentUser.uid,
+                  date: getDates,
                   startTime: DateHour,
-                  endtTime: '',
-                  totalTime: ''
+                  totalTime: '',
+                  productos: []
                 }
               )
             }

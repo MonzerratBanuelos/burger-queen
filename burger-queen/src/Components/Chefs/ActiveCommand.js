@@ -1,5 +1,6 @@
 import { useState } from 'react'
 export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
+  const cronometro = GetTimer(mesa)
   const [productNewStatus, SetProductNewStatus] = useState({
     orderId: mesa.orderId,
     table: mesa.table,
@@ -22,6 +23,8 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
     for (const property in updatedMesa[id]) {
       if (property === 'productStatus') {
         updatedMesa[id][property] = 'ready'
+      } if (property === 'productTime') {
+        updatedMesa[id][property] = cronometro
       }
       SetProductNewStatus({ ...productNewStatus, productos: [...updatedMesa] })
     }
@@ -33,9 +36,9 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
     const nowIsReady = isReady.every(testStatus)
     if (nowIsReady === true) {
       productNewStatus.TableStatus = 'ready'
-      SetProductNewStatus({ ...productNewStatus, TableStatus: 'ready', totalTime: GetTimer })
+      SetProductNewStatus({ ...productNewStatus, TableStatus: 'ready', totalTime: cronometro })
     }
-    fetchProductos({ ...productNewStatus, productos: [...updatedMesa], TableStatus: 'ready' })
+    fetchProductos({ ...productNewStatus, productos: [...updatedMesa], TableStatus: 'ready', totalTime: cronometro })
   }
 
   const fetchProductos = async (productStats) => {
@@ -60,7 +63,7 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
               <br />
               {mesa.table}{' '}
             </th>
-            <GetTimer mesa={mesa} setTimer2={setTimer2} timer2={timer2} />
+            <div>{cronometro}</div>
           </tr>
         </thead>
         {mesa && mesa.productos.map((product) =>

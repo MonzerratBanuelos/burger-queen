@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
-export const GetTimer = ({ mesa, setTimer2, timer2 }) => {
+export const getTimer = (mesa) => {
+  // console.log(mesa)
   const hoursMinSecs = { hours: mesa.startTime.slice(0, 2), minutes: mesa.startTime.slice(3, 5), seconds: mesa.startTime.slice(6, 8) }
   const { hours = 0, minutes = 0, seconds = 0 } = hoursMinSecs
   const [[hour, minute, second], setTime] = useState([hours, minutes, seconds])
   const [pruebaHora, setPruebaHora] = useState('0')
-  const [cambioTiempo, setCambioTiempo] = useState()
+  // const [cambioTiempo, setCambioTiempo] = useState()
   const funcionCucha = () => {
     const fecha = new Date()
     const dateMinuts = fecha.getMinutes()
@@ -14,11 +15,11 @@ export const GetTimer = ({ mesa, setTimer2, timer2 }) => {
     const veoveo = Math.abs(totalMin).toString().padStart(2, '0') + ':' + Math.abs(totalSec).toString().padStart(2, '0')
     setPruebaHora(veoveo)
     // const meValeeee = veoveo.join('')
-    setTimer2({ orden: mesa.orderId, tiempoTranscurrido: pruebaHora })
-    const timerUpdated = [...timer2.tiempoTranscurrido]
-    console.log(timerUpdated)
-    setCambioTiempo({ ...cambioTiempo, cambioTiempo: [pruebaHora] })
-    setTimer2({ ...timer2, tiempoTranscurrido: [...timerUpdated] })
+    // setTimer2({ orden: mesa.orderId, tiempoTranscurrido: pruebaHora })
+    // const timerUpdated = [...timer2.tiempoTranscurrido]
+    // console.log(timerUpdated)
+    // setCambioTiempo({ ...cambioTiempo, cambioTiempo: [pruebaHora] })
+    // setTimer2({ ...timer2, tiempoTranscurrido: [...timerUpdated] })
   }
   const tick = () => {
     setTime([hour, minute, second + 1])

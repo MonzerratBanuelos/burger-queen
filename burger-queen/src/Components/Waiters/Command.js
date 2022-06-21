@@ -104,7 +104,7 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
         waiterId: currentUser.uid,
         date: getDates,
         startTime: DateHour,
-        totalTime: '',
+        totalTime: timer,
         productos: []
       }))
   }
@@ -312,15 +312,15 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
               orderId: 1,
               table: '',
               clientName: '',
-              productos: [],
               totalProducts: '',
               totalPrice: '',
               TableStatus: 'kitchen',
               waiter: currentUser.displayName,
               waiterId: currentUser.uid,
+              date: getDates,
               startTime: DateHour,
-              endtTime: '',
-              totalTime: ''
+              totalTime: timer,
+              productos: []
             }); setMain('Mesas')
           }}>
             Enviar Comanda{' '}
