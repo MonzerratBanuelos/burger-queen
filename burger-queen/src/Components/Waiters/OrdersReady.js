@@ -4,19 +4,18 @@ import { useState } from 'react'
 
 export const OrdersReady = ({ rol, mesa, setMesas, table, products }) => {
   const [productDelivery, SetProductDelivery] = useState({
-    id: mesa.id,
     orderId: mesa.orderId,
     table: mesa.table,
     clientName: mesa.clientName,
-    productos: mesa.productos,
     totalProducts: mesa.totalProducts,
     totalPrice: mesa.totalPrice,
     TableStatus: mesa.TableStatus,
-    waiter: mesa.displayName,
-    waiterId: mesa.uid,
+    waiter: mesa.waiter,
+    waiterId: mesa.waiterId,
+    date: mesa.date,
     startTime: mesa.startTime,
-    endtTime: mesa.endtTime,
-    totalTime: mesa.totalTime
+    totalTime: mesa.totalTime,
+    productos: mesa.productos
   })
   const handleDeliveryProduct = (CurrentProduct, mesa) => {
     // entra a la orden luego a producto y busca el producto en el array , si el seleccionado coincide con el id
@@ -58,10 +57,10 @@ export const OrdersReady = ({ rol, mesa, setMesas, table, products }) => {
                     src={graybell}
                     alt='bell'
                     className='icon_bell'
-                    onClick={ () => { handleStats(product) }}
+                    onClick={() => { handleStats(product) }}
                   />)
                   : (
-                    <div className='product_time'> 0:15 </div>
+                    <div className='product_time'>{product.productTime}</div>
                   )
                 }
 
