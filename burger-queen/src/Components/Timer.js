@@ -7,12 +7,28 @@ export const getTimer = (mesa) => {
   // const [cambioTiempo, setCambioTiempo] = useState()
   const funcionCucha = () => {
     const fecha = new Date()
+    const dateHours = fecha.getHours()
     const dateMinuts = fecha.getMinutes()
     const dateSeconds = fecha.getSeconds()
-    const totalMin = Number(dateMinuts) - Number(mesa.startTime.slice(3, 5))
+    // convertimos las horas en minutos
+    const totalHour = Number(dateHours) * 60
+    // 787 - 774 = 13
+    // 838 - 774 =
+    const totalMin = (Number(dateMinuts) + Number(totalHour)) - ((Number(mesa.startTime.slice(0, 2)) * 60) + Number(mesa.startTime.slice(3, 5)))
     const totalSec = Number(dateSeconds) - Number(mesa.startTime.slice(6, 8))
-    const veoveo = Math.abs(totalMin).toString().padStart(2, '0') + ':' + Math.abs(totalSec).toString().padStart(2, '0')
-    setPruebaHora(veoveo)
+    let miau = 0
+    if (totalMin > 59) {
+      const minutingos = totalMin - 60
+      const horingas = totalHour / 60
+      const hiihi = horingas.toString().slice(0, 1)
+      miau = Math.abs(hiihi).toString().padStart(2, '0') + ':' + Math.abs(minutingos).toString().padStart(2, '0') + ':' + Math.abs(totalSec).toString().padStart(2, '0')
+      console.log(minutingos)
+      console.log(horingas + 'Horas')
+      setPruebaHora(miau)
+    } else {
+      miau = Math.abs(totalMin).toString().padStart(2, '0') + ':' + Math.abs(totalSec).toString().padStart(2, '0')
+      setPruebaHora(miau)
+    }
     // const meValeeee = veoveo.join('')
     // setTimer2({ orden: mesa.orderId, tiempoTranscurrido: pruebaHora })
     // const timerUpdated = [...timer2.tiempoTranscurrido]
@@ -20,6 +36,9 @@ export const getTimer = (mesa) => {
     // setCambioTiempo({ ...cambioTiempo, cambioTiempo: [pruebaHora] })
     // setTimer2({ ...timer2, tiempoTranscurrido: [...timerUpdated] })
   }
+
+  // 12:54 orden yo 13:07
+  // si yo > orden  13 > 12  en minutos orden
   const tick = () => {
     setTime([hour, minute, second + 1])
     if (second === 59) {

@@ -40,6 +40,7 @@ export default function FormProducts({ newProduct, setMain, setAside, setLoading
   }
 
   const handleSubmit = (e) => {
+    e.preventDefault()
     postCommand()
     setMain('Menu')
     setAside(null)
