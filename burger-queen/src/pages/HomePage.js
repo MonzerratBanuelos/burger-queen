@@ -2,6 +2,7 @@
 import '../styles/HomePage.css'
 import LogoBQB from '../Assets/Images/BQBlack.png'
 import LogOut from '../Assets/icons/logOut.png'
+import loadingIcon from '../Assets/icons/load-icon-png-22.png'
 import { Menu } from '../Components/Menu'
 import CreateUsers from '../Components/Administrador/Employees/CreateUsers'
 import { TablesOrders } from '../Components/Waiters/TablesOrders'
@@ -40,6 +41,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   // Se llena con la informacion de la mesa a la que clickes para eventualmente editarla
   const [timer, setTimer] = useState(DateHour)
   const [timer2, setTimer2] = useState([])
+  const [loading, setLoading] = useState(false)
   const getMesas = async () => {
     const url = 'http://localhost:4000/orders'
     const getFetchData = await fetch(url).then((resul) => resul.json())
@@ -53,7 +55,9 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   }
   // observa el cambio en la funcion getMesas
   useEffect(() => {
+    setLoading(true)
     setFristRender()
+    setLoading(false)
   }, [])
 
   useEffect(() => {
@@ -64,6 +68,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   }, [])
   // da valor al handle de renderizado segun el rol
   const setFristRender = () => {
+    setLoading(true)
     if (rol === 'admin') {
       setHandleMain('Empleados')
       setHandleAside('null')
@@ -76,6 +81,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       setHandleMain('Comandas')
       setHandleAside('ProductsListos')
     }
+    setLoading(false)
   }
   // console.log(timer2)
   // hace renderizado condicional en main
@@ -87,7 +93,7 @@ export default function HomePage({ handleExit, currentUser, rol }) {
       return <TablesOrders GetTimer={getTimer} timer2={timer2} onOff={onOff} setOnOff={setOnOff} setMain={setHandleMain} setAside={setHandleAside} mesas={mesas} setMesas={setMesas} editingTable={editingTable} setEditingTable={setEditingTable} order={order} setOrder={setOrder} />
     }
     if (handleMain === 'Menu') {
-      return <Menu onOff={onOff} rol={rol} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} />
+      return <Menu onOff={onOff} rol={rol} newProduct={newProduct} setNewProduct={setNewProduct} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} handleMain={handleMain} handleAside={handleAside} loading={loading} />
     }
     if (handleMain === 'Comandas') {
       return <ActiveCommands mesas={mesas} GetTimer={getTimer} setTimer2={setTimer2} timer2={timer2} />
@@ -100,19 +106,19 @@ export default function HomePage({ handleExit, currentUser, rol }) {
   // hace renderizado condicional en Aside
   const handleAsideRender = (handleMain) => {
     if (handleMain === 'Comanda') {
-      return <Command editingTable={editingTable} onOff={onOff} setOnOff={setOnOff} setEditingTable={setEditingTable} totalOrders={totalOrders} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} DateHour={DateHour} currentUser={currentUser} getDates={getDates} timer={timer}/>
+      return <Command editingTable={editingTable} onOff={onOff} setOnOff={setOnOff} setEditingTable={setEditingTable} totalOrders={totalOrders} order={order} setOrder={setOrder} setMain={setHandleMain} setAside={setHandleAside} DateHour={DateHour} currentUser={currentUser} getDates={getDates} timer={timer} />
     }
     if (handleMain === 'CreateUsers') {
       return <CreateUsers editStaff={editStaff} setEditStaff={setEditStaff} deleteStaff={deleteStaff} setAside={setHandleAside} />
     }
     if (handleMain === 'ProductsControl') {
-      return <ProductsControl rol={rol} mesas={mesas} setMesas={setMesas} timer2={timer2} setTimer2={setTimer2}/>
+      return <ProductsControl rol={rol} mesas={mesas} setMesas={setMesas} timer2={timer2} setTimer2={setTimer2} />
     }
     if (handleMain === 'ProductsListos') {
-      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas} GetTimer={getTimer}/>
+      return <ReadyProducts rol={rol} mesas={mesas} setMesas={setMesas} GetTimer={getTimer} />
     }
     if (handleMain === 'FormProducts') {
-      return <FormProducts newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
+      return <FormProducts newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} setLoading={setLoading} />
     }
     if (handleMain === 'VerReceta') {
       return <Recipes newProduct={newProduct} setNewProduct={setNewProduct} setMain={setHandleMain} setAside={setHandleAside} />
@@ -140,109 +146,111 @@ export default function HomePage({ handleExit, currentUser, rol }) {
     getMesas()
   }, [order])
   return (
-    <div className='home_container'>
-      <header className='header_home'>
-        <img src={LogoBQB} alt='Logo' className='logo_header' />
+    (loading === true)
+      ? <img src={loadingIcon} alt='loading' className='logo_header' />
+      : <div className='home_container'>
+        <header className='header_home'>
+          <img src={LogoBQB} alt='Logo' className='logo_header' />
 
-        {rol === 'admin' && (
-          <p className={`${handleMain === 'Empleados' ? 'activeB' : 'inactiveB'}`}
-            onClick={() => { setHandleMain('Empleados'); setHandleAside('null') }}
-          >
-            Empleados
-          </p>
-        )}
-        {rol === 'admin' && (
-          <p className={`${handleMain === 'Menu' ? 'activeB' : 'inactiveB'}`}
-            onClick={() => { setHandleMain('Menu'); setHandleAside('null') }}>
-            Productos
-          </p>
-        )}
+          {rol === 'admin' && (
+            <p className={`${handleMain === 'Empleados' ? 'activeB' : 'inactiveB'}`}
+              onClick={() => { setHandleMain('Empleados'); setHandleAside('null') }}
+            >
+              Empleados
+            </p>
+          )}
+          {rol === 'admin' && (
+            <p className={`${handleMain === 'Menu' ? 'activeB' : 'inactiveB'}`}
+              onClick={() => { setHandleMain('Menu'); setHandleAside('null') }}>
+              Productos
+            </p>
+          )}
 
-        {rol === 'mesero' && (
-          <p className={`${handleMain === 'Mesas' ? 'activeB' : 'inactiveB'}`}
-            onClick={() =>
-            // eslint-disable-next-line brace-style
-            {
-              setHandleMain('Mesas'); setHandleAside('ProductsControl'); setOrder(
-                {
-                  orderId: 1,
-                  table: '',
-                  clientName: '',
-                  totalProducts: '',
-                  totalPrice: '',
-                  TableStatus: 'kitchen',
-                  waiter: currentUser.displayName,
-                  waiterId: currentUser.uid,
-                  date: getDates,
-                  startTime: DateHour,
-                  totalTime: '',
-                  productos: []
-                }
-              )
-            }
-            } >
-            Mesas
-          </p>
-        )}
-        {rol === 'mesero' && (
-          <p className={`${handleMain === 'Menu' ? 'activeB' : 'inactiveB'}`}
-            onClick={() => {
-              setHandleMain('Menu'); setOnOff(false); setHandleAside('ProductsControl'); setOrder(
-                {
-                  orderId: 1,
-                  table: '',
-                  clientName: '',
-                  productos: [],
-                  totalProducts: '',
-                  totalPrice: '',
-                  TableStatus: 'kitchen',
-                  waiter: currentUser.displayName,
-                  waiterId: currentUser.uid,
-                  startTime: DateHour,
-                  endtTime: '',
-                  totalTime: ''
-                }
-              )
-            }
-            }>
-            Menu
-          </p>
-        )}
+          {rol === 'mesero' && (
+            <p className={`${handleMain === 'Mesas' ? 'activeB' : 'inactiveB'}`}
+              onClick={() =>
+              // eslint-disable-next-line brace-style
+              {
+                setHandleMain('Mesas'); setHandleAside('ProductsControl'); setOrder(
+                  {
+                    orderId: 1,
+                    table: '',
+                    clientName: '',
+                    totalProducts: '',
+                    totalPrice: '',
+                    TableStatus: 'kitchen',
+                    waiter: currentUser.displayName,
+                    waiterId: currentUser.uid,
+                    date: getDates,
+                    startTime: DateHour,
+                    totalTime: '',
+                    productos: []
+                  }
+                )
+              }
+              } >
+              Mesas
+            </p>
+          )}
+          {rol === 'mesero' && (
+            <p className={`${handleMain === 'Menu' ? 'activeB' : 'inactiveB'}`}
+              onClick={() => {
+                setHandleMain('Menu'); setOnOff(false); setHandleAside('ProductsControl'); setOrder(
+                  {
+                    orderId: 1,
+                    table: '',
+                    clientName: '',
+                    productos: [],
+                    totalProducts: '',
+                    totalPrice: '',
+                    TableStatus: 'kitchen',
+                    waiter: currentUser.displayName,
+                    waiterId: currentUser.uid,
+                    startTime: DateHour,
+                    endtTime: '',
+                    totalTime: ''
+                  }
+                )
+              }
+              }>
+              Menu
+            </p>
+          )}
 
-        {rol === 'cocinero' && (
-          <p className={`${handleMain === 'Comandas' ? 'activeB' : 'inactiveB'}`}
-            onClick={() => { setHandleMain('Comandas'); setHandleAside('null') }}>
-            Comandas
-          </p>
-        )}
-        {rol === 'cocinero' && (
-          <p className={`${handleMain === 'Recetas' ? 'activeB' : 'inactiveB'}`}
-            onClick={() => { setHandleMain('Recetas'); setHandleAside('null') }} >
-            Recetas
-          </p>
-        )}
+          {rol === 'cocinero' && (
+            <p className={`${handleMain === 'Comandas' ? 'activeB' : 'inactiveB'}`}
+              onClick={() => { setHandleMain('Comandas'); setHandleAside('null') }}>
+              Comandas
+            </p>
+          )}
+          {rol === 'cocinero' && (
+            <p className={`${handleMain === 'Recetas' ? 'activeB' : 'inactiveB'}`}
+              onClick={() => { setHandleMain('Recetas'); setHandleAside('null') }} >
+              Recetas
+            </p>
+          )}
 
-        <img src={LogOut} alt='Logo' className='icon_header'
-          onClick={() => { handleExit().then(() => console.log('cerraste sesion')) }}
-        />
-      </header>
-      <div className='rol_info'>
-        <p><b>{currentUser.displayName}</b></p>
-        <p><b>{rol}</b></p>
-        <p><b>Hora:</b> {DateHour} </p>
+          <img src={LogOut} alt='Logo' className='icon_header'
+            onClick={() => { handleExit().then(() => console.log('cerraste sesion')) }}
+          />
+        </header>
+        <div className='rol_info'>
+          <p><b>{currentUser.displayName}</b></p>
+          <p><b>{rol}</b></p>
+          <p><b>Hora:</b> {DateHour} </p>
+        </div>
+
+        <main className='main_home'>
+          {rol === 'admin' && handleMainRender(handleMain)}
+          {rol === 'mesero' && handleMainRender(handleMain)}
+          {rol === 'cocinero' && handleMainRender(handleMain)}
+        </main>
+
+        <aside className='rol_aside'>
+          {rol === 'admin' && handleAsideRender(handleAside)}
+          {rol === 'mesero' && handleAsideRender(handleAside)}
+          {rol === 'cocinero' && handleAsideRender(handleAside)}
+        </aside>
       </div>
-
-      <main className='main_home'>
-        {rol === 'admin' && handleMainRender(handleMain)}
-        {rol === 'mesero' && handleMainRender(handleMain)}
-        {rol === 'cocinero' && handleMainRender(handleMain)}
-      </main>
-
-      <aside className='rol_aside'>
-        {rol === 'admin' && handleAsideRender(handleAside)}
-        {rol === 'mesero' && handleAsideRender(handleAside)}
-        {rol === 'cocinero' && handleAsideRender(handleAside)}
-      </aside>
-    </div>
   )
 }

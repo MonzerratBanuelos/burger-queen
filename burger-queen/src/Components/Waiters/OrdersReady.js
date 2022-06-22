@@ -62,7 +62,7 @@ export const OrdersReady = ({ rol, mesa, setMesas, table, products, timer2, GetT
                     onClick={() => { handleStats(product) }}
                   />)
                   : (
-                    <div className='product_time'> 0:15 </div>
+                    <div className='product_time'>{product.productTime} </div>
                   )
                 }
 

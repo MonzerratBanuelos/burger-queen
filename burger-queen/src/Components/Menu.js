@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react'
 import { Product } from './Product'
 import Add from '../Assets/icons/yelowAdd.png'
 
-export const Menu = ({ onOff, setNewProduct, rol, order, setOrder, setMain, setAside, handleMain }) => {
+export const Menu = ({ onOff, setNewProduct, newProduct, rol, order, setOrder, setMain, setAside, handleMain, handleAside, loading }) => {
   const [menu, setMenu] = useState('breakfast')
   const [products, setProducts] = useState(null)
 
-  const handleAside = () => {
+  const handleAsidee = () => {
     setMain('Menu')
     setAside('FormProducts')
   }
@@ -25,6 +25,10 @@ export const Menu = ({ onOff, setNewProduct, rol, order, setOrder, setMain, setA
     getData()
   }, [menu])
 
+  useEffect(() => {
+    getData()
+  }, [handleAside])
+
   return (
     <>
       <div className='nav_menu'>
@@ -40,7 +44,7 @@ export const Menu = ({ onOff, setNewProduct, rol, order, setOrder, setMain, setA
           products.map((product) => (
             <Product onOff={onOff} setNewProduct={setNewProduct} rol={rol} product={product} key={product.id} setOrder={setOrder} order={order} handleMain={handleMain} setAside={setAside} />
           ))}
-        {rol === 'admin' && (<img src={Add} alt='Add' className='icon_Add' onClick={() => { handleAside() }} />)}
+        {rol === 'admin' && (<img src={Add} alt='Add' className='icon_Add' onClick={() => { handleAsidee() }} />)}
       </div>
     </>
   )
