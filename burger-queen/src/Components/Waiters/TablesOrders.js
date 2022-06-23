@@ -1,15 +1,15 @@
 import '../../styles/TablesOrders.css'
 import Add from '../../Assets/icons/yelowAdd.png'
 import { TableOrder } from './TableOrder'
-export const TablesOrders = ({ GetTimer, onOff, setOnOff, setMain, setAside, mesas, setMesas, editingTable, setEditingTable, setOrder }) => {
+export const TablesOrders = ({ setMain, setAside, getTimer, setOnOff, commands, setOrder, setEditingTable }) => {
   const handleOrder = () => {
     setMain('Menu')
-    setAside('Comanda')
+    setAside('Command')
   }
   return (
     <div className='tables_container'>{
-      mesas && mesas.map((mesa) => (
-        <TableOrder GetTimer={GetTimer} mesa={mesa} key={mesa.id} setAside={setAside} editingTable={editingTable} setEditingTable={setEditingTable} setMain={setMain} setOrder={setOrder} setOnOff={setOnOff} />
+      commands && commands.map((command) => (
+        <TableOrder key={command.id} command={command} setMain={setMain} setAside={setAside} getTimer={getTimer} setOnOff={setOnOff} setOrder={setOrder} setEditingTable={setEditingTable} />
       ))}
       <img
         src={Add}

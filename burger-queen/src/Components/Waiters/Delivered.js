@@ -1,16 +1,16 @@
 import { ProductsDelivered } from '../Waiters/ProductsDelivered'
 import '../../styles/ProductsControl.css'
 
-export const Delivered = ({ mesas }) => {
+export const Delivered = ({ commands }) => {
   return (
     <>
       <div className='tables_container'>
-        {mesas &&
-          mesas.map((mesa) => (
+        {commands &&
+          commands.map((command) => (
             <ProductsDelivered
-              table={mesa.table}
-              products={mesa.productos}
-              key={mesa.id}
+              table={command.table}
+              products={command.productos}
+              key={command.id}
             />
           ))}
       </div>

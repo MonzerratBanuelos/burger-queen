@@ -15,10 +15,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding-left: 8%;
+    height: 2rem;
 }
-
+s
 section.employee_card:nth-child(even) {
     background-color: #F7F7F7;
+
 }
 
 .btn_employee {

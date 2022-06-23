@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react'
 import { Product } from './Product'
 import Add from '../Assets/icons/yelowAdd.png'
 
-export const Menu = ({ onOff, setNewProduct, newProduct, rol, order, setOrder, setMain, setAside, handleMain, handleAside, loading }) => {
+export const Menu = ({ onOff, setNewProduct, rol, order, setOrder, setMain, setAside, handleMain, handleAside, loading }) => {
   const [menu, setMenu] = useState('breakfast')
   const [products, setProducts] = useState(null)
 
-  const handleAsidee = () => {
+  const handleForm = () => {
+    setNewProduct(null)
     setMain('Menu')
     setAside('FormProducts')
   }
@@ -42,9 +43,9 @@ export const Menu = ({ onOff, setNewProduct, newProduct, rol, order, setOrder, s
       <div className='products_container'>
         {products &&
           products.map((product) => (
-            <Product onOff={onOff} setNewProduct={setNewProduct} rol={rol} product={product} key={product.id} setOrder={setOrder} order={order} handleMain={handleMain} setAside={setAside} />
+            <Product key={product.id} onOff={onOff} setNewProduct={setNewProduct} rol={rol} product={product} setOrder={setOrder} order={order} handleMain={handleMain} setAside={setAside} />
           ))}
-        {rol === 'admin' && (<img src={Add} alt='Add' className='icon_Add' onClick={() => { handleAsidee() }} />)}
+        {rol === 'admin' && (<img src={Add} alt='Add' className='icon_Add' onClick={() => { handleForm() }} />)}
       </div>
     </>
   )

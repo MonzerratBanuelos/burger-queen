@@ -1,19 +1,25 @@
 import '../../styles/TableOrder.css'
-export const TableOrder = ({ GetTimer, mesa, setOrder, setAside, setMain, editingTable, setEditingTable, setOnOff }) => {
-  const cronometro = GetTimer(mesa)
+export const TableOrder = ({ setMain, setAside, getTimer, setOnOff, command, setOrder, setEditingTable }) => {
+  const cronometro = getTimer(command)
   return (
-    <div className='container_table' key={mesa.id} onClick={() => { setMain('Menu'); setAside('Comanda'); setOrder(mesa); setOnOff(true); console.log(editingTable); setEditingTable('editando') }}>
-      <table className='data_table'>
-        <thead>
-          <tr><th id='title_table'>Mesa{mesa.table} </th><th id='time_title'>{cronometro}</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Cliente:</td><td>{mesa.clientName}</td></tr>
-          <tr><td>Productos:</td><td>{mesa.totalProducts}</td></tr>
-          <tr><td>Total:</td><td>{mesa.totalPrice}</td></tr>
-        </tbody>
-      </table>
+    <div className='container_table' key={command.id} onClick={() => { setMain('Menu'); setAside('Command'); setOrder(command); setOnOff(true); setEditingTable('editando') }}>
+      <div className='order_header'>
+        <div className='order_table'>Mesa</div>
+        <div className='order_table'>{command.table}</div>
+        <div className='time_title'>{cronometro}</div>
+      </div>
+      <div className='order_info'>
+        <div className='order_data'>Cliente</div>
+        <div className='order_command'>{command.clientName}</div>
+      </div>
+      <div className='order_info'>
+        <div className='order_data'>Productos</div>
+        <div className='order_command'>{command.totalProducts}</div>
+      </div>
+      <div className='order_info'>
+        <div className='order_data'>Total</div>
+        <div className='order_command'>{command.totalPrice}</div>
+      </div>
     </div>
   )
 }

@@ -1,17 +1,12 @@
 /* eslint-disable indent */
 import '../../styles/Command.css'
-// import { useState } from 'react'
 import iconDelete from '../../Assets/icons/delete.png'
 import iconAdd from '../../Assets/icons/add.png'
 import iconLess from '../../Assets/icons/less.png'
 import { useEffect } from 'react'
 
-export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editingTable, setEditingTable, onOff, setOnOff, DateHour, currentUser, getDates, timer }) => {
-  // const [currentTable, setCurrentTable] = useState(editingTable)
-  // console.log(editingTable)
+export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editingTable, setEditingTable, DateHour, currentUser, getDates }) => {
   const dataInfo = order
-  // console.log(currentTable)
-  // console.log(setCurrentTable)
   const { productos } = order
   const totalPrices = productos.map((product) => {
     return product.price * product.cantidad
@@ -27,36 +22,7 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
     (a, b) => a + b,
     initialQuantity
   )
-  // condiona si se creará una nueva orden o si se editará una vieja
-  // const handleEditOrAddFunction = (e) => {
-  //  if (onOff === true) {
-  //    handleSubmitCommand(e)
-  //   setAside(null)
-  /*  }
-   if (onOff === true && editingTable === 'editando') {
-     e.preventDefault()
-     setOrder({ ...order, order })
-     editTable()
-     console.log('hi')
-     setAside(null)
-   }
- }
-*/
-  /* const handleEditOrAddFunction = (e) => {
-    if (editingTable === null) {
-      handleSubmitCommand(e)
-      setAside(null)
-    }
-    if (editingTable !== null) {
-      e.preventDefault()
-      setCurrentTable({ ...currentTable, currentTable })
-      editTable()
-      console.log('hi')
-      setAside(null)
-    }
-  } */
-
-  const prueba = {
+  const toPostInDB = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -74,14 +40,8 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
     })
       .then((response) => response.json())
       .then(setEditingTable(null),
-        console.log('ya jala porfis'))
+        console.log('Actualizado'))
   }
-
-  // const setTheOnChange = (e) => {
-  //  e.preventDefault()
-  //  const { name, value } = e.target
-  //  setCurrentTable({ ...currentTable, [name]: value })
-  // }
 
   useEffect(() => {
     // si hay ordenes, extrae el numero total y agrega 1 al contador OrderId
@@ -91,7 +51,7 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
   }, [fullAccount, totalQuantity])
 
   const postCommand = () => {
-    fetch('http://localhost:4000/orders', prueba)
+    fetch('http://localhost:4000/orders', toPostInDB)
       .then((response) => response.json())
       .then((data) => setOrder({
         orderId: 1,
@@ -104,7 +64,7 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
         waiterId: currentUser.uid,
         date: getDates,
         startTime: DateHour,
-        totalTime: timer,
+        totalTime: '',
         productos: []
       }))
   }
@@ -112,8 +72,8 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
   const handleSubmitCommand = (e) => {
     e.preventDefault()
     postCommand()
-    setMain('Mesas')
-    setAside('null')
+    setMain('tables')
+    setAside('ProductsControl')
   }
   // Estas funciones son las que agregan o quitan elementos de la comanda con los botones + , - y la basura
   const handleAdd = (currentProduct) => {
@@ -145,7 +105,6 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
     }
     setOrder({ ...order, productos: [...updatedOrder] })
   }
-  // console.log(editingTable)
   return (<>
     {editingTable === 'editando'
       ? <div className='container_of_command'>
@@ -232,7 +191,7 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
               waiterId: currentUser.uid,
               date: getDates,
               startTime: DateHour,
-              totalTime: timer,
+              totalTime: '',
               productos: []
             })
             setMain('Mesas')
@@ -319,7 +278,7 @@ export const Command = ({ totalOrders, order, setOrder, setMain, setAside, editi
               waiterId: currentUser.uid,
               date: getDates,
               startTime: DateHour,
-              totalTime: timer,
+              totalTime: '',
               productos: []
             }); setMain('Mesas')
           }}>

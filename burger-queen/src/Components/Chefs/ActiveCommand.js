@@ -1,25 +1,28 @@
 import { useState } from 'react'
-export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
-  const cronometro = GetTimer(mesa)
+import '../../styles/ActiveCommand.css'
+import bell from '../../Assets/icons/yelowBell.png'
+export const ActiveCommand = ({ command, getTimer, setTimer2, timer2 }) => {
+  const cronometro = getTimer(command)
   const [productNewStatus, SetProductNewStatus] = useState({
-    orderId: mesa.orderId,
-    table: mesa.table,
-    clientName: mesa.clientName,
-    totalProducts: mesa.totalProducts,
-    totalPrice: mesa.totalPrice,
-    TableStatus: mesa.TableStatus,
-    waiter: mesa.displayName,
-    waiterId: mesa.waiterId,
-    date: mesa.date,
-    startTime: mesa.startTime,
-    totalTime: mesa.totalTime,
-    productos: mesa.productos
+    orderId: command.orderId,
+    table: command.table,
+    clientName: command.clientName,
+    totalProducts: command.totalProducts,
+    totalPrice: command.totalPrice,
+    TableStatus: command.TableStatus,
+    waiter: command.displayName,
+    waiterId: command.waiterId,
+    date: command.date,
+    startTime: command.startTime,
+    totalTime: command.totalTime,
+    productos: command.productos
   })
-  const updateStatus = (currentProducto, mesa) => {
-    const id = mesa.productos.findIndex((producto) => {
+  const updateStatus = (currentProducto, command) => {
+    const id = command.productos.findIndex((producto) => {
       return producto.id === currentProducto.id
     })
-    const updatedMesa = [...mesa.productos]
+    const updatedMesa = [...command.productos]
+    console.log(updatedMesa)
     for (const property in updatedMesa[id]) {
       if (property === 'productStatus') {
         updatedMesa[id][property] = 'ready'
@@ -47,53 +50,39 @@ export const ActiveCommand = ({ mesa, GetTimer, setTimer2, timer2 }) => {
   }
 
   const fetchProductos = async (productStats) => {
-    await fetch(`http://localhost:4000/orders/${mesa.id}`, {
+    await fetch(`http://localhost:4000/orders/${command.id}`, {
       method: 'PATCH',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(productNewStatus)
     })
       .then((response) => response.json())
       .then(console.log('actualizado'))
-    console.log(mesa)
+    console.log(command)
   }
 
   const handleSubmit = async (product) => {
-    updateStatus(product, mesa)
+    updateStatus(product, command)
   }
   return (
-    <div className='container_table' key={mesa.id}>
-      <table className='data_table'>
-        <thead>
-          <tr>
-            <th id='title_table'>
-              Mesa
-              <br />
-              {mesa.table}{' '}
-            </th>
-            <div>{cronometro}</div>
-          </tr>
-        </thead>
-        {mesa &&
-          mesa.productos.map((product) =>
-            product.productStatus === 'kitchen'
-              ? <tbody key={product.name}>
-                <tr>
-                  <td>{product.cantidad}</td>
-                  <td>
-                    {product.name}
-                    <button
-                      onClick={() => {
-                        handleSubmit(product)
-                      }}
-                    >
-                      -
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-              : undefined
-          )}
-      </table>
+    <div className='table_container' key={command.id}>
+      <div className='header_order'>
+        <div className='num_table'>Mesa {command.table}</div>
+        <div className='timer_Content'>{cronometro}</div>
+        <div className='delivery'>Entregar</div>
+      </div>
+      {command && command.productos.map((product) =>
+        product.productStatus === 'kitchen'
+          ? <div className='products_order' key={product.name}>
+              <div className='cant_product'>{product.cantidad}</div>
+              <div className='name_product'>{product.name}</div>
+              <div className='bell'>
+                <img src={bell} alt='bell' className='btn_bell' onClick={() => {
+                  handleSubmit(product)
+                }} />
+              </div>
+          </div>
+          : undefined
+      )}
     </div>
   )
 }

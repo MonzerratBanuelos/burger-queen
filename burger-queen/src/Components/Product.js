@@ -5,14 +5,14 @@ export const Product = ({ onOff, setNewProduct, rol, product, setOrder, order, s
     if (rol === 'admin') {
       setAside('FormProducts')
     }
-    if (rol === 'mesero' && onOff === true) {
+    if (rol === 'waiter' && onOff === true) {
       handleAddProduct(product)
     }
-    if (rol === 'mesero' && onOff === false) {
-      setAside('Descripciones')
+    if (rol === 'waiter' && onOff === false) {
+      setAside('recipes')
     }
-    if (rol === 'cocinero') {
-      setAside('VerReceta')
+    if (rol === 'chef') {
+      setAside('recipes')
     }
   }
   const handleAddProduct = (currentProduct) => {

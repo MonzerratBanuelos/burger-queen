@@ -48,10 +48,6 @@ export default function HomePage() {
       })
   }
 
-  // const maskify = (password) => {
-  //   return password.slice(0, -1).replace(/[a-zA-Z]/g, '*').concat(password.slice(-1, password.len))
-  // }
-
   return (
     <div className='log_in_content'>
       <aside className='left_aside_content'>

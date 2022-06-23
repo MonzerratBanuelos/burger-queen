@@ -11,7 +11,6 @@ export const getTimer = (mesa) => {
     const dateNow = new Date()
     // de ambas fechas se saca su tiempo con el getTime y se restan para conocer la dif en milisegundos
     const diffe = dateNow.getTime() - dateTable.getTime()
-    console.log(diffe)
     // guardamos la diferencia en una variable que los representa "milisegundos"
     let mseco = diffe
     // se crea la const de hora y se hacen calculos para obtenerla
@@ -28,7 +27,6 @@ export const getTimer = (mesa) => {
     // representa 1000= 1 seg en un minuto
     const se = Math.floor(mseco / 1000)
     mseco -= se * 1000
-    console.log(mseco)
     // seteamos el estado con el que se condiciona el useEffect() con lo obtenido
     setPruebaHora(`${ho}:${mi}:${se}`)
     /*  const fecha = new Date()

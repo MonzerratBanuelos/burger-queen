@@ -20,7 +20,6 @@ function App() {
 
   const userRol = (user) => {
     getRol(user.uid).then((resul) => setRol(resul))
-    // console.log(rol)
   }
 
   useEffect(() => {

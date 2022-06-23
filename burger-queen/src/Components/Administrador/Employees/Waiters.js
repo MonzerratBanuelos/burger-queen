@@ -11,7 +11,7 @@ export const Waiters = ({ setAside, setEditStaff }) => {
   }
 
   const getWaiter = async () => {
-    const q = query(collection(db, 'User'), where('rol', '==', 'mesero'))
+    const q = query(collection(db, 'User'), where('rol', '==', 'waiter'))
     onSnapshot(q, (querySnapShot) => {
       const waiters = []
       querySnapShot.forEach((waiter) => {

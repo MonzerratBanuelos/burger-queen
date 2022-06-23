@@ -2,7 +2,7 @@ import { StatusProduct } from '../Waiters/StatusProduct'
 import { Delivered } from '../Waiters/Delivered'
 import '../../styles/ProductsControl.css'
 
-export const ProductsControl = ({ rol, mesas, setMesas, timer2 }) => {
+export const ProductsControl = ({ rol, commands, setCommands, timer2 }) => {
   // console.log(timer2)
   return (
     <section className='productsControl_container'>
@@ -15,7 +15,7 @@ export const ProductsControl = ({ rol, mesas, setMesas, timer2 }) => {
           <p className='productsControl_subtittle1'> Cantidad | Entregar</p>
         </div>
         <div className='scroll'>
-          <StatusProduct rol={rol} mesas={mesas} setMesas={setMesas} timer2={timer2} />
+          <StatusProduct rol={rol} commands={commands} setCommands={setCommands} />
         </div>
       </section>
       <section className='ProductReady_Container'>
@@ -27,7 +27,7 @@ export const ProductsControl = ({ rol, mesas, setMesas, timer2 }) => {
           <p className='productsControl_subtittle1'> Entregado</p>
         </div>
         <div className='scroll'>
-          <Delivered mesas={mesas} setMesas={setMesas} />
+          <Delivered commands={commands} setCommands={setCommands} />
         </div>
       </section>
     </section>

@@ -4,7 +4,6 @@ import './Products.css'
 
 export default function FormProducts({ newProduct, setMain, setAside, setLoading }) {
   const [currentProduct, setCurrentProduct] = useState(newProduct)
-  console.log(currentProduct)
   const updateStatus = () => {
     setCurrentProduct({ ...currentProduct, currentProduct })
     fetchProductos({ ...currentProduct, currentProduct })

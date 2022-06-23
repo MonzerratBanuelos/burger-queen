@@ -16,7 +16,7 @@ export default function PrivateRoutes({ currentUser, rol }) {
 
     )
   }
-  if (rol === 'mesero' && currentUser !== null) {
+  if (rol === 'waiter' && currentUser !== null) {
     return (
 
       <BrowserRouter>
@@ -27,7 +27,7 @@ export default function PrivateRoutes({ currentUser, rol }) {
 
     )
   }
-  if (rol === 'cocinero' && currentUser !== null) {
+  if (rol === 'chef' && currentUser !== null) {
     return (
       <BrowserRouter>
         <Routes>

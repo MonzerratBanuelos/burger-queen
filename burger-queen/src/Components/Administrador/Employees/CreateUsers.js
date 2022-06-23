@@ -73,10 +73,10 @@ function CreateUsers({ deleteStaff, editStaff, setAside }) {
             <input className='input_form' type='text' id="email" placeholder='Correo electronico' />
             <input className='input_form' type='password' id="password" placeholder='Contraseña' />
             <select className='input_form' id="rol" placeholder='Puesto'>
-              <option value='mesero' className="label">Puesto</option>
+              <option value='waiter' className="label">Puesto</option>
               <option value="admin">Admin</option>
-              <option value="mesero">Mesero</option>
-              <option value="cocinero">Cocinero</option>
+              <option value="waiter">Mesero</option>
+              <option value="chef">Cocinero</option>
             </select>
             <select className='input_form' id="turn" placeholder='Turno'>
               <option value='matutino' className="label">Turno</option>
@@ -97,8 +97,8 @@ function CreateUsers({ deleteStaff, editStaff, setAside }) {
                 <select className='input_form' name='rol' value={employe.rol} onChange={(e) => { setOnChange(e) }}>
                   <option disabled >Puesto</option>
                   <option value="admin">Admin</option>
-                  <option value="mesero">Mesero</option>
-                  <option value="cocinero">Cocinero</option>
+                  <option value="waiter">Mesero</option>
+                  <option value="chef">Cocinero</option>
                 </select>
                 <select className='input_form' name='turn' value={employe.turn} onChange={(e) => { setOnChange(e) }}>
                   <option disabled >Turno</option>

@@ -6,11 +6,11 @@ export const Chefs = ({ setAside, setEditStaff }) => {
   const [staff, setStaff] = useState([])
 
   const handleEditStaff = (chef) => {
-    setAside('CreateUsers')
     setEditStaff(chef)
+    setAside('CreateUsers')
   }
   const getChef = async () => {
-    const q = query(collection(db, 'User'), where('rol', '==', 'cocinero'))
+    const q = query(collection(db, 'User'), where('rol', '==', 'chef'))
     onSnapshot(q, (querySnapShot) => {
       const chefs = []
       querySnapShot.forEach((chef) => {

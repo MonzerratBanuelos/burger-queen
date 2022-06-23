@@ -163,416 +163,108 @@
   ],
   "orders": [
     {
-      "orderId": 1,
-      "table": "",
-      "clientName": "",
+      "orderId": 3,
+      "table": "1",
+      "clientName": "mario",
+      "totalProducts": 2,
+      "totalPrice": 17,
+      "TableStatus": "ready",
+      "waiter": "Candy Lopez",
+      "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
+      "date": "2022-06-23T07:46:41.958Z",
+      "startTime": "02:46:41",
+      "totalTime": "0:5:3",
       "productos": [
         {
-          "id": 15,
-          "name": "Porridge de Avena",
-          "price": 50,
-          "productStatus": "ready",
+          "id": 4,
+          "name": "Jugo de frutas natural",
+          "price": "7",
+          "productStatus": "delivery",
+          "productTime": "0:4:56",
           "cantidad": 1
         },
-        {
-          "id": 1,
-          "name": "Café americano",
-          "price": 5,
-          "productStatus": "ready",
-          "cantidad": 1
-        }
-      ],
-      "totalProducts": "",
-      "totalPrice": "",
-      "TableStatus": "kitchen",
-      "waiter": "Itzel Lopez ",
-      "waiterId": "ho1v7sxk2VYQi1W48HXIuLdvx9F3",
-      "startTime": "14:24",
-      "endtTime": "",
-      "totalTime": "",
-      "id": 1
-    },
-    {
-      "orderId": 2,
-      "table": "5",
-      "clientName": "Marie",
-      "productos": [
         {
           "id": 3,
           "name": "Sandwich de jamón y queso ",
           "price": 10,
-          "productStatus": "ready",
-          "cantidad": 1
-        },
-        {
-          "id": 13,
-          "name": "Huevos Revueltos",
-          "price": "40",
-          "productStatus": "ready",
-          "cantidad": 1
-        },
-        {
-          "id": 2,
-          "name": "Café con leche",
-          "price": 5,
-          "productStatus": "ready",
-          "cantidad": 1
-        },
-        {
-          "id": 1,
-          "name": "Café americano",
-          "price": 5,
-          "productStatus": "kitchen",
+          "productStatus": "delivery",
+          "productTime": "0:5:3",
           "cantidad": 1
         }
       ],
-      "totalProducts": 4,
-      "totalPrice": 60,
-      "TableStatus": "kitchen",
-      "waiter": "Itzel Lopez ",
-      "waiterId": "ho1v7sxk2VYQi1W48HXIuLdvx9F3",
-      "startTime": "14:24",
-      "endtTime": "",
-      "totalTime": "",
       "id": 2
     },
     {
-      "orderId": 3,
-      "table": "",
-      "clientName": "",
+      "orderId": 4,
+      "table": "2",
+      "clientName": "ana",
+      "totalProducts": 3,
+      "totalPrice": 22,
+      "TableStatus": "kitchen",
+      "waiter": "Candy Lopez",
+      "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
+      "date": "2022-06-23T07:52:50.029Z",
+      "startTime": "02:52:50",
+      "totalTime": "",
       "productos": [
         {
-          "id": 13,
-          "name": "Huevos Revueltos",
-          "price": "40",
+          "id": 4,
+          "name": "Jugo de frutas natural",
+          "price": "7",
           "productStatus": "ready",
+          "productTime": "0:39:49",
           "cantidad": 1
         },
         {
-          "id": 1,
-          "name": "Café americano",
+          "id": 2,
+          "name": "Café con leche",
           "price": 5,
           "productStatus": "kitchen",
-          "cantidad": 2
-        },
-        {
-          "id": 3,
-          "name": "Sandwich de jamón y queso ",
-          "price": 10,
-          "productStatus": "kitchen",
+          "productTime": "",
           "cantidad": 1
         },
         {
-          "id": 15,
-          "name": "Porridge de Avena",
-          "price": 50,
+          "id": 5,
+          "name": "Hamburguesa simple",
+          "price": 10,
           "productStatus": "kitchen",
-          "cantidad": 3
+          "productTime": "",
+          "cantidad": 1
         }
       ],
-      "totalProducts": 7,
-      "totalPrice": 210,
-      "TableStatus": "kitchen",
-      "waiter": "Anna Li",
-      "waiterId": "wVhBMXIFNhbdwT8UExRgDDPJH5h1",
-      "startTime": "18:7",
-      "endtTime": "",
-      "totalTime": "",
       "id": 3
     },
     {
-      "orderId": 6,
+      "orderId": 5,
       "table": "2",
-      "clientName": "Monze",
-      "productos": [
-        {
-          "id": 4,
-          "name": "Jugo de frutas natural",
-          "price": "7",
-          "productStatus": "kitchen",
-          "cantidad": 3
-        },
-        {
-          "id": 15,
-          "name": "Porridge de Avena",
-          "price": 50,
-          "productStatus": "kitchen",
-          "cantidad": 1
-        }
-      ],
-      "totalProducts": 4,
-      "totalPrice": 71,
-      "TableStatus": "kitchen",
-      "waiter": "Panchito",
-      "waiterId": "4RMnnNuNYxZgUGWVgfoOl5OBf5G2",
-      "startTime": "15:32",
-      "endtTime": "",
-      "totalTime": "",
-      "id": 6
-    },
-    {
-      "orderId": 7,
-      "table": "5",
-      "clientName": "Maria",
-      "totalProducts": 3,
-      "totalPrice": 17,
-      "TableStatus": "kitchen",
-      "waiter": "Candy Lopez",
-      "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
-      "date": "2022-06-22T17:52:44.898Z",
-      "startTime": "12:52:44",
-      "totalTime": "",
-      "productos": [
-        {
-          "id": 4,
-          "name": "Jugo de frutas natural",
-          "price": "7",
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        },
-        {
-          "id": 2,
-          "name": "Café con leche",
-          "price": 5,
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        },
-        {
-          "id": 1,
-          "name": "Café americano",
-          "price": 5,
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        }
-      ],
-      "id": 7
-    },
-    {
-      "orderId": 8,
-      "table": "1",
-      "clientName": "pay",
-      "totalProducts": 3,
-      "totalPrice": 100,
-      "TableStatus": "kitchen",
-      "waiter": "Candy Lopez",
-      "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
-      "date": "2022-06-22T17:54:07.962Z",
-      "startTime": "12:54:7",
-      "totalTime": "",
-      "productos": [
-        {
-          "id": 13,
-          "name": "Huevos Revueltos",
-          "price": "40",
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        },
-        {
-          "id": 15,
-          "name": "Porridge de Avena",
-          "price": 50,
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        },
-        {
-          "id": 3,
-          "name": "Sandwich de jamón y queso ",
-          "price": 10,
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        }
-      ],
-      "id": 8
-    },
-    {
-      "orderId": 9,
-      "table": "6",
-      "clientName": "si",
+      "clientName": "aquiles",
       "totalProducts": 2,
-      "totalPrice": 57,
-      "TableStatus": "kitchen",
-      "waiter": "Candy Lopez",
-      "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
-      "date": "2022-06-22T17:54:24.996Z",
-      "startTime": "12:54:24",
-      "totalTime": "12:54:24",
-      "productos": [
-        {
-          "id": 4,
-          "name": "Jugo de frutas natural",
-          "price": "7",
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        },
-        {
-          "id": 15,
-          "name": "Porridge de Avena",
-          "price": 50,
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        }
-      ],
-      "id": 9
-    },
-    {
-      "orderId": 10,
-      "table": "3",
-      "clientName": "numeros",
-      "totalProducts": 2,
-      "totalPrice": 45,
-      "TableStatus": "kitchen",
-      "waiter": "Candy Lopez",
-      "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
-      "date": "2022-06-22T17:57:21.988Z",
-      "startTime": "12:57:21",
-      "totalTime": "12:57:21",
-      "productos": [
-        {
-          "id": 13,
-          "name": "Huevos Revueltos",
-          "price": "40",
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        },
-        {
-          "id": 2,
-          "name": "Café con leche",
-          "price": 5,
-          "productStatus": "kitchen",
-          "productTime": "",
-          "cantidad": 1
-        }
-      ],
-      "id": 10
-    },
-    {
-      "orderId": 11,
-      "table": "4",
-      "clientName": "Tyff",
-      "totalProducts": 5,
-      "totalPrice": 112,
+      "totalPrice": 22,
       "TableStatus": "ready",
       "waiter": "Candy Lopez",
       "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
-      "date": "2022-06-22T18:58:54.895Z",
-      "startTime": "13:58:54",
-      "totalTime": "08:37",
+      "date": "2022-06-23T14:35:54.292Z",
+      "startTime": "09:35:54",
+      "totalTime": "0:0:44",
       "productos": [
         {
-          "id": 4,
-          "name": "Jugo de frutas natural",
-          "price": "7",
+          "id": 6,
+          "name": "Hamburguesa doble",
+          "price": 15,
           "productStatus": "ready",
-          "productTime": "06:03",
+          "productTime": "0:0:44",
           "cantidad": 1
         },
         {
-          "id": 1,
-          "name": "Café americano",
-          "price": 5,
+          "id": 10,
+          "name": "Agua 750ml",
+          "price": 7,
           "productStatus": "ready",
-          "productTime": "06:02",
-          "cantidad": 1
-        },
-        {
-          "id": 3,
-          "name": "Sandwich de jamón y queso ",
-          "price": 10,
-          "productStatus": "ready",
-          "productTime": "06:05",
-          "cantidad": 1
-        },
-        {
-          "id": 13,
-          "name": "Huevos Revueltos",
-          "price": "40",
-          "productStatus": "delivery",
-          "productTime": "08:38",
-          "cantidad": 1
-        },
-        {
-          "id": 15,
-          "name": "Porridge de Avena",
-          "price": 50,
-          "productStatus": "delivery",
-          "productTime": "08:37",
+          "productTime": "0:0:44",
           "cantidad": 1
         }
       ],
-      "id": 11
-    },
-    {
-      "orderId": 13,
-      "table": "6",
-      "clientName": "Luis Miguel",
-      "totalProducts": 11,
-      "totalPrice": 224,
-      "TableStatus": "ready",
-      "waiter": "Candy Lopez",
-      "waiterId": "V5fnPB0yW5as6anpPERYaTbxEo13",
-      "date": "2022-06-22T23:53:26.885Z",
-      "startTime": "18:53:26",
-      "totalTime": "0:2:23",
-      "productos": [
-        {
-          "id": 4,
-          "name": "Jugo de frutas natural",
-          "price": "7",
-          "productStatus": "delivery",
-          "productTime": "0:1:54",
-          "cantidad": 2
-        },
-        {
-          "id": 2,
-          "name": "Café con leche",
-          "price": 5,
-          "productStatus": "delivery",
-          "productTime": "0:2:0",
-          "cantidad": 2
-        },
-        {
-          "id": 1,
-          "name": "Café americano",
-          "price": 5,
-          "productStatus": "delivery",
-          "productTime": "0:2:6",
-          "cantidad": 2
-        },
-        {
-          "id": 13,
-          "name": "Huevos Revueltos",
-          "price": "40",
-          "productStatus": "delivery",
-          "productTime": "0:2:15",
-          "cantidad": 2
-        },
-        {
-          "id": 15,
-          "name": "Porridge de Avena",
-          "price": 50,
-          "productStatus": "delivery",
-          "productTime": "0:2:16",
-          "cantidad": 2
-        },
-        {
-          "id": 3,
-          "name": "Sandwich de jamón y queso ",
-          "price": 10,
-          "productStatus": "delivery",
-          "productTime": "0:2:23",
-          "cantidad": 1
-        }
-      ],
-      "id": 12
+      "id": 4
     }
   ]
 }

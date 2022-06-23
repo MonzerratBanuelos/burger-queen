@@ -5,21 +5,35 @@
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
 }
-
-.img_recipe {
+.image_background{
   width: 100%;
+  height: 27%;
+}
+.img_recipe {
+  width: 33%;
   height: auto;
-
+  position: absolute;
+  top: 108px;
+  z-index: -99;
 }
 
 .name_recipe {
   color: black;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+.data_recipe{
+  height: 30%;
+  text-align: center;
+  margin-top: 1rem;
+  overflow-y: scroll;
+  /* scroll-behavior: smooth; */
 }
 
-.category_recipe {
+.category_data {
   text-align: center;
+  margin-top: .5rem;
 }
 
 .price_recipe {
@@ -36,4 +50,5 @@
   font-weight: 800;
   border: none;
   font-size: 1.2em;
+  margin-top: .5rem;
 }
